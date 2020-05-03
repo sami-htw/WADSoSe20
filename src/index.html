@@ -1,106 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1" >
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <meta charset="UTF-8">
+
+  <!-- Zusatzinformationen zum Dokument -->
+  <meta charset="utf-8"> <!-- Kodierung -->
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+
 </head>
 
 <body>
-    <section id="login">
+  <section id="login">
 
-        <div class="main">
-            <p class="sign" align="center">Login Form</p>
-            <form class="form1">
-                <label>
-                    <input class="un" type="text" align="center" placeholder="Username">
-                </label>
-                <label>
-                    <input class="pass" type="password" align="center" placeholder="Password">
-                </label>
-                <a class="submit" align="center">Sign in</a>
-                <p class="forgot" align="center">
-                    <a href="#">Forgot Password?</a>
-                </p>
-            </form>
-        </div>
-    </section>
+    <div class="main">
+      <p class="sign" align="center">Login Form</p>
+      <form class="form1">
+        <label>
+          <input class="un" type="text" align="center" placeholder="Username" name="Username"required>
+        </label>
+        <label>
+          <input class="pass" type="password" align="center" placeholder="Password" name="Password"required>
+        </label>
+        <a class="submit" align="center" href="pb.htm">Sign in</a>
+        <p class="forgot" align="center">
+          <a href="#">Forgot Password?</a>
+        </p>
+      </form>
+    </div>
+  </section>
 
-    <section id="main">
-        <div class=main1>
-            <h2 class=sign align="center">Contact Form</h2>
-        
-            <hr style="border: 0; height: 5px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(10, 0, 0, 0));" />
-            <div>
-              <label>Vorname</label>
-              <input type="text" name="name"> </input>
-            </div><br>
-        
-        
-            <div>
-              <label>Name</label>
-              <input type="text" name="name"> </input>
-            </div><br>
-        
-            <div>
-              <label>Straße</label>
-              <input type="text" name="name"> </input>
-            </div><br>
-            <div>
-              <label>PLZ</label>
-              <input type="text" name="PLZ"> </input>
-            </div><br>
-        
-        
-        
-            <label for="country">Stadt</label>
-            <select id="stadt" name="stadt">
-              <option value="Deutschland">Berlin</option>
-              <option value="frankreich">Potsdam</option>
-              <option value="usa">Brandenburg</option>
-            </select><br><br>
-        
-        
-            <label for="country">Bezirke</label>
+  <section id="main">
+    <div class=main1>
+      <h2 class=sign align="center">Contact Form</h2>
 
-            <select id="country" name="country">
-              <option value="Berlin">Stadtmitte</option>
-              <option value="Bohn">Tempelhof</option>
-              <option value="Muenchen">Wedding</option>
-              <option value="Bremen">Charlotenburg</option>
-              <option value="Dresden">Neukoellen</option>
-              <option value="Hanover">Schoeneweide</option>
-              <option value="Koeln">Lichtenberg</option>
-              <option value="Duesseldorf">Marzehn</option>
-              <option value="stutgart">Hellersdorf</option>
-            </select><br><br>
-        
-        
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" checked="checked" name="remember">private
-              </label>
-            </div><br>
-        
-            <button type="submit" class="submit" align="left">add</button>
-        
-        
-        
-          </div>
-    </section>
+      <hr style="border: 0; height: 5px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(10, 0, 0, 0));" />
+      <div>
+        <label>Vorname</label>
+        <input type="text" name="name"> </input>
+      </div><br>
 
-    <section id="add_adress">
-        <h1>Neue Adresse hinzufügen</h1>
-        <div id=map>google map <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d310846.42013233475!2d13.14455454370644!3d52.50651327269696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84e373f035901%3A0x42120465b5e3b70!2sBerlin!5e0!3m2!1sen!2sde!4v1587392147162!5m2!1sen!2sde" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> </div>
 
-    </section>
+      <div>
+        <label>Name</label>
+        <input type="text" name="name"> </input>
+      </div><br>
 
-    <section id="update">
-        <h1>Update oder Löschen</h1>
-    </section>
+      <div>
+        <label>Straße</label>
+        <input type="text" name="name"> </input>
+      </div><br>
+      <div>
+        <label>PLZ</label>
+        <input type="text" name="PLZ"> </input>
+      </div><br>
+
+
+
+      <label for="country">Stadt</label>
+      <select id="stadt" name="stadt">
+        <option value="Deutschland">Berlin</option>
+        <option value="frankreich">Potsdam</option>
+        <option value="usa">Brandenburg</option>
+      </select><br><br>
+
+
+      <label for="country">Bezirke</label>
+
+      <select id="country" name="country">
+        <option value="Berlin">Stadtmitte</option>
+        <option value="Bohn">Tempelhof</option>
+        <option value="Muenchen">Wedding</option>
+        <option value="Bremen">Charlotenburg</option>
+        <option value="Dresden">Neukoellen</option>
+        <option value="Hanover">Schoeneweide</option>
+        <option value="Koeln">Lichtenberg</option>
+        <option value="Duesseldorf">Marzehn</option>
+        <option value="stutgart">Hellersdorf</option>
+      </select><br><br>
+
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" checked="checked" name="remember">private
+        </label>
+      </div><br>
+
+      <button type="submit" class="submit" align="left">add</button>
+
+
+
+    </div>
+  </section>
+
+  <section id="add_adress">
+<h1 align="center"><a href="#main" style="color:#000"> Neue Adresse hinzufügen </a></h1><br/>
+    <!-- neue Map of Berlin with pin is added -->
+    
+    <div id="map" align="center">google map <br /> <br />
+      <iframe src="https://www.google.de/maps/d/embed?mid=1xUlJqPy-0t8fWEYiOKVae5ZT39HZIpTv" width="640" height="480"></iframe>
+   
+    </div>
+  
+  </section>
+
+  <section id="update">
+    <h1 align="center"><a href="#main" style="color:#000"> Update oder Löschen </a></h1>
+  </section>
 
 </body>
 
