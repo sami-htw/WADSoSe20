@@ -18,7 +18,7 @@
 
       <div class="cardView">
         <p class="sign" align="center">Login</p>
-        <form class="form1">
+        <form class="Login-form">
           <label>
             <input class="un" type="text" align="center" placeholder="Username" name="Username" required>
           </label>
@@ -35,53 +35,49 @@
 
     <section id="adds">
       <div class=cardView>
-        <h2 class=sign align="center">Add new Adress</h2>
+        <h2 class=sign align="center" style="padding-top:5px; padding-bottom:10px;">Add new Adress</h2>
 
-        <hr
-          style="border: 0; height: 5px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(10, 0, 0, 0));" />
-        <div>
-          <label>Vorname</label>
-          <input type="text" name="name" required> </input>
-        </div><br>
+        <hr style="border: 0; height: 5px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(10, 0, 0, 0));" />
 
 
-        <div>
-          <label>Name</label>
-          <input type="text" name="name" required> </input>
-        </div><br>
-
-        <div>
-          <label>Straße</label>
-          <input type="text" name="name"> </input>
-        </div><br>
-        <div>
-          <label>PLZ</label>
-          <input type="text" name="PLZ" minlength="5" maxlength="5" pattern="[0-9]{5}"> </input>
-        </div><br>
+        <div class="Fields" align="center">
+          <div>
+            <label class="label-control">Vorname</label>
+            <input type="text" name="name" align="center" required> </input>
+          </div><br>
 
 
+          <div>
+            <label class="label-control">Name</label>
+            <input type="text" name="name" required> </input>
+          </div><br>
 
-        <label for="country">Stadt</label>
-        <select id="stadt" name="stadt">
-          <option value="Deutschland">Berlin</option>
-          <option value="frankreich">Potsdam</option>
-          <option value="usa">Brandenburg</option>
-        </select><br><br>
+          <div>
+            <label class="label-control">Straße</label>
+            <input type="text" name="name"> </input>
+          </div><br>
+          <div>
+            <label class="label-control">PLZ</label>
+            <input type="text" name="PLZ" minlength="5" maxlength="5" pattern="[0-9]{5}"> </input>
+          </div><br>
 
 
-        <label for="country">Bezirke</label>
+        </div>
 
-        <select id="country" name="country">
-          <option value="Berlin">Stadtmitte</option>
-          <option value="Bohn">Tempelhof</option>
-          <option value="Muenchen">Wedding</option>
-          <option value="Bremen">Charlotenburg</option>
-          <option value="Dresden">Neukoellen</option>
-          <option value="Hanover">Schoeneweide</option>
-          <option value="Koeln">Lichtenberg</option>
-          <option value="Duesseldorf">Marzehn</option>
-          <option value="stutgart">Hellersdorf</option>
-        </select><br><br>
+
+        <div class="stadt">
+
+
+
+          <label for="country">Stadt</label>
+          <select id="stadt" name="stadt">
+            <option value="Deutschland">Berlin</option>
+            <option value="frankreich">Potsdam</option>
+            <option value="usa">Brandenburg</option>
+          </select><br><br>
+        </div>
+
+
 
 
         <div class="checkbox">
@@ -90,7 +86,9 @@
           </label>
         </div><br>
 
-        <a class="submit" align="center" href="#logins">Add</a>
+        <a class="submit1"  href="#maps">Add</a>
+
+          <a class="del" align="right" href="#maps">Delete</a>
 
 
 
@@ -102,17 +100,16 @@
       <!-- neue Map of Berlin with pin is added -->
 
       <div id="map" align="center">google map <br /> <br />
-        <iframe src="https://www.google.de/maps/d/embed?mid=1xUlJqPy-0t8fWEYiOKVae5ZT39HZIpTv" width="640"
-          height="480"></iframe>
+        <iframe src="https://www.google.de/maps/d/embed?mid=1xUlJqPy-0t8fWEYiOKVae5ZT39HZIpTv" width="640" height="480"></iframe>
 
       </div>
 
-    </section>
+
 
     <section id="update">
-      <h1 align="center"><a href="#main" style="color:#000">Update/Delete Address</a></h1>
+      <h1 align="center"><a href="#adds" style="color:#000">Update/Delete Address</a></h1>
     </section>
-
+  </section>
   </main>
 </body>
 
