@@ -15,17 +15,19 @@
   <main>
 
     <section id="logins">
-
-      <div class="cardView">
-        <p class="sign" align="center">Login</p>
-        <form class="Login-form">
-          <label>
-            <input class="un" type="text" align="center" placeholder="Username" name="Username" required>
+      <div class="card">
+        <p class="card_title">Login</p>
+        <form action="#maps" method="GET">
+          <!-- method eigentlich POST weil passwort nicht in url stehen sollte aber sonst funkt verlinkung nicht-->
+          <label for="username">
+            <input class="login_input" type="text" id="username" placeholder="Username" name="username" required>
           </label>
-          <label>
-            <input class="pass" type="password" align="center" placeholder="Password" name="Password" required>
+          <label for="pass">
+            <input class="login_input" type="password" id="pass" placeholder="Password" name="password" required>
           </label>
-          <a class="submit" align="center" href="#adds">Sign in</a>
+          <div class="button-container">
+            <button>Sign in</button>
+          </div>
           <p class="forgot" align="center">
             <a href="#">Forgot Password?</a>
           </p>
@@ -34,64 +36,46 @@
     </section>
 
     <section id="adds">
-      <div class=cardView>
-        <h2 class=sign align="center" style="padding-top:5px; padding-bottom:10px;">Add new Adress</h2>
+      <div class=card>
+        <h2 class="card_title" align="center">Add new Adress</h2>
+        <hr
+          style="border: 0; height: 5px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(10, 0, 0, 0));" />
+        <form action="#maps" method="GET" class="label-control">
 
-        <hr style="border: 0; height: 5px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(10, 0, 0, 0));" />
-
-
-        <div class="Fields" align="center">
-          <div>
-            <label class="label-control">Vorname</label>
-            <input type="text" name="name" align="center" required> </input>
-          </div><br>
-
-
-          <div>
-            <label class="label-control">Name</label>
-            <input type="text" name="name" required> </input>
-          </div><br>
-
-          <div>
-            <label class="label-control">Straße</label>
-            <input type="text" name="name"> </input>
-          </div><br>
-          <div>
-            <label class="label-control">PLZ</label>
-            <input type="text" name="PLZ" minlength="5" maxlength="5" pattern="[0-9]{5}"> </input>
-          </div><br>
-
-
-        </div>
-
-
-        <div class="stadt">
-
-
-
-          <label for="country">Stadt</label>
-          <select id="stadt" name="stadt">
-            <option value="Deutschland">Berlin</option>
-            <option value="frankreich">Potsdam</option>
-            <option value="usa">Brandenburg</option>
-          </select><br><br>
-        </div>
-
-
-
-
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" checked="checked" name="remember">private
-          </label>
-        </div><br>
-
-        <a class="submit1"  href="#maps">Add</a>
-
-          <a class="del" align="right" href="#maps">Delete</a>
-
-
-
+          <div class="label-control">
+            <label class="form-item" for="first_name" class="label-control">Vorname</label>
+            <input class="form-item" type="text" name="first_name" id="first_name" align="center" required>
+          </div>
+          <div class="label-control">
+            <label class="form-item" for="last_name" class="label-control">Name</label>
+            <input class="form-item" type="text" name="last_name" id="last_name" required>
+          </div>
+          <div class="label-control">
+            <label class="form-item" for="street" class="label-control">Straße</label>
+            <input class="form-item" type="text" name="street" id="street" required>
+          </div>
+          <div class="label-control">
+            <label class="form-item" for="postal-code" class="label-control">PLZ</label>
+            <input class="form-item" type="text" id="postal-code" name="postal-code" minlength="5" maxlength="5"
+              pattern="[0-9]{5}" required>
+          </div>
+          <div div class="label-control">
+            <label class="form-item" for="city" class="label-control">Stadt</label>
+            <input class="form-item" type="text" name="city" id="city" required>
+          </div>
+          <div div class="label-control">
+            <label class="form-item" for="country" class="label-control">Land</label>
+            <input class="form-item" type="text" name="country" id="country" required>
+          </div>
+          <div class="checkbox">
+            <label for="private" class="label-control">
+              <input id="private" type="checkbox" checked="checked" name="remember">privat</input>
+            </label>
+          </div>
+          <div class="button-container">
+            <button type="submit">Add</button>
+          </div>
+        </form>
       </div>
     </section>
 
@@ -100,17 +84,60 @@
       <!-- neue Map of Berlin with pin is added -->
 
       <div id="map" align="center">google map <br /> <br />
-        <iframe src="https://www.google.de/maps/d/embed?mid=1xUlJqPy-0t8fWEYiOKVae5ZT39HZIpTv" width="640" height="480"></iframe>
-
+        <iframe src="https://www.google.de/maps/d/embed?mid=1xUlJqPy-0t8fWEYiOKVae5ZT39HZIpTv" width="640"
+          height="480"></iframe>
+      </div>
+      <div class="button-container">
+        <a class="button" href="#adds">Add</a>
+        <a class="button" href="#updates">Update</a>
       </div>
 
+      <section id="updates">
+        <div class=card>
+          <h2 class="card_title" align="center">Update/Delete Adress</h2>
+          <hr
+            style="border: 0; height: 5px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(10, 0, 0, 0));" />
+          <form action="#maps" method="GET" class="label-control">
 
-
-    <section id="update">
-      <h1 align="center"><a href="#adds" style="color:#000">Update/Delete Address</a></h1>
+            <div class="label-control">
+              <label class="form-item" for="first_name" class="label-control">Vorname</label>
+              <input class="form-item" type="text" name="first_name" id="first_name" align="center" required> </input>
+            </div>
+            <div class="label-control">
+              <label class="form-item" for="last_name" class="label-control">Name</label>
+              <input class="form-item" type="text" name="last_name" id="last_name" required> </input>
+            </div>
+            <div class="label-control">
+              <label class="form-item" for="street" class="label-control">Straße</label>
+              <input class="form-item" type="text" name="street" id="street" required> </input>
+            </div>
+            <div class="label-control">
+              <label class="form-item" for="postal-code" class="label-control">PLZ</label>
+              <input class="form-item" type="text" id="postal-code" name="postal-code" minlength="5" maxlength="5"
+                pattern="[0-9]{5}" required> </input>
+            </div>
+            <div div class="label-control">
+              <label class="form-item" for="city" class="label-control">Stadt</label>
+              <input class="form-item" type="text" name="city" id="city" required>
+            </div>
+            <div div class="label-control">
+              <label class="form-item" for="country" class="label-control">Land</label>
+              <input class="form-item" type="text" name="country" id="country" required>
+            </div>
+            <div class="label-control">
+              <label for="private" class="label-control">
+                <input id="private" type="checkbox" checked="checked" name="remember">privat</input>
+              </label>
+            </div>
+            <div class="button-container">
+              <button type="submit">Add</button>
+              <button type="reset">Delete</button> <!-- auf reset weil keine andere funktion ohne jscript-->
+            </div>
+          </form>
+        </div>
+      </section>
     </section>
-  </section>
+
   </main>
 </body>
-
 </html>
