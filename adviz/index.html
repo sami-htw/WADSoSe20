@@ -57,7 +57,7 @@
           <div class="label-control">
             <label class="form-item" for="postal-code" class="label-control">PLZ</label>
             <input class="form-item" type="text" id="postal-code" name="postal-code" minlength="5" maxlength="5"
-              pattern="[0-9]{5}" required>
+              pattern="[0-9]{5}" title="Postleitzahl sollte aus 5 Ziffern bestehen. Bsp. 10556" required>
           </div>
           <div div class="label-control">
             <label class="form-item" for="city" class="label-control">Stadt</label>
@@ -114,7 +114,7 @@
             <div class="label-control">
               <label class="form-item" for="postal-code" class="label-control">PLZ</label>
               <input class="form-item" type="text" id="postal-code" name="postal-code" minlength="5" maxlength="5"
-                pattern="[0-9]{5}" required> </input>
+                pattern="[0-9]{5}" title="Postleitzahl sollte aus 5 Ziffern bestehen. Bsp. 10556" required> </input>
             </div>
             <div div class="label-control">
               <label class="form-item" for="city" class="label-control">Stadt</label>
@@ -131,7 +131,8 @@
             </div>
             <div class="button-container">
               <button class="button" type="submit">Update</button>
-              <button class="button" type="reset">Delete</button> <!-- auf reset weil keine andere funktion ohne jscript-->
+              <button class="button" type="reset">Delete</button>
+              <!-- auf reset weil keine andere funktion ohne jscript-->
             </div>
           </form>
         </div>
@@ -140,4 +141,5 @@
 
   </main>
 </body>
+
 </html>

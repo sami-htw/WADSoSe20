@@ -36,7 +36,7 @@ section {
   text-align: center;
 }
 
-.login_input{
+.login_input {
   width: 76%;
   color: rgb(38, 50, 56);
   font-weight: 700;
@@ -63,7 +63,7 @@ section {
 }
 
 .button {
-  display:inline-block;
+  display: inline-block;
   background: linear-gradient(to right, orange, #E040FB);
   border-radius: 5em;
   color: #fff;
@@ -78,27 +78,10 @@ section {
   cursor: pointer;
 }
 
-.button-container{
+.button-container {
   text-align: center;
   margin-top: 50px;
 }
-
-/*del    */
-
-.del {
-  background: linear-gradient(to right, orange, #E040FB);
-  color: #fff;
-  border-radius: 5em;
-
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-  font-family: 'Ubuntu', sans-serif;
-  margin-left: 20%;
-}
-
-
 
 input[type=text] {
   padding-left: 10px;
@@ -119,17 +102,6 @@ a {
   text-decoration: none
 }
 
-
-.Fields {
-  padding: 30px 5px;
-}
-
-.slabel-control {
-  display: inline-block;
-  width: 140px;
-  text-align: left;
-}
-
 form.label-control {
   display: table;
 }
@@ -138,7 +110,7 @@ div.label-control {
   display: table-row;
 }
 
-label.form-item{
+label.form-item {
   display: table-cell;
   margin-bottom: 10px;
   padding-right: 7em;
