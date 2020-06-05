@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!--  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+  <script src="js/script.js" defer></script>
+  <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"/>
 
 </head>
 
@@ -18,7 +21,7 @@
       <div class="card">
       
         <p class="card_title">Login</p>
-        <form action="#maps" method="GET" id="formScript">
+        <form action="#maps" method="GET" id="login-form">
           <!-- method eigentlich POST weil passwort nicht in url stehen sollte aber sonst funkt verlinkung nicht-->
           <label for="username">
             <input class="login_input" type="text" id="username" placeholder="Username" name="username" required>
@@ -27,7 +30,7 @@
             <input class="login_input" type="password" id="pass" placeholder="Password" name="password" required>
           </label>
           <div class="button-container">
-            <button class="button" onclick="userLoginFunction()">Sign in</button>
+            <button id="login-button" class="button">Sign in</button>
           </div>
           <p class="forgot" align="center">
             <a href="#">Forgot Password?</a>
@@ -74,25 +77,34 @@
             </label>
           </div>
           <div class="button-container">
-            <button class="button" type="submit">Add</button>
+            <button id="add-add-button" class="button" type="submit">Add</button>
           </div>
         </form>
       </div> 
     </section>
 
     <section id="maps">
-      <h1 align="center"><a href="#main" style="color:#000"></a></h1><br />
-      <!-- neue Map of Berlin with pin is added -->
-
-      <div id="map" align="center">google map <br /> <br />
-        <iframe src="https://www.google.de/maps/d/embed?mid=1xUlJqPy-0t8fWEYiOKVae5ZT39HZIpTv" width="640"
-          height="480"></iframe>
+      <div id="map" align="center"></div>
+      <div>
+        <label for="contacts" id="contacts_list">
+          <p id="demo"> hello </p>
+        </label>
       </div>
       <div class="button-container">
-        <a class="button" href="#adds">Add</a>
-        <a class="button" href="#updates">Update</a>
+
+      <ol id="mylist">
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+      
+        <a id="maps-add-button" class="button" href="#adds">Add</a>
+        <a id="maps-update-button" class="button" href="#updates">Update</a>
       </div>
 
+      
+    </section>
+    
       <section id="updates">
         <div class=card>
           <h2 class="card_title" align="center">Update/Delete Adress</h2>
@@ -131,14 +143,14 @@
               </label>
             </div>
             <div class="button-container">
-              <button class="button" type="submit">Update</button>
-              <button class="button" type="reset">Delete</button>
+              <button id="update-update-button" class="button" type="submit">Update</button>
+              <button id="update-delete-button" class="button" type="reset">Delete</button>
               <!-- auf reset weil keine andere funktion ohne jscript-->
             </div>
           </form>
         </div>
       </section>
-    </section>
+   
 
   </main>
 

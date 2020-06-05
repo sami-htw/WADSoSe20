@@ -119,3 +119,14 @@ input.form-item {
   display: table-cell;
   margin-bottom: 10px;
 }
+
+#map {
+  margin: auto;
+  width: 400px;
+  height: 400px;
+}
+
+#contact_list {
+  float: left;
+  margin: ;
+}
