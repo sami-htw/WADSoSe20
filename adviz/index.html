@@ -30,7 +30,7 @@
             <input class="login_input" type="password" id="pass" placeholder="Password" name="password" required>
           </label>
           <div class="button-container">
-            <button id="login-button" class="button">Sign in</button>
+            <a id="login-button" class="button">Sign in</a>
           </div>
           <p class="forgot" align="center">
             <a href="#">Forgot Password?</a>
@@ -59,8 +59,8 @@
             <input class="form-item" type="text" name="street" id="street" required>
           </div>
           <div class="label-control">
-            <label class="form-item" for="postal-code" class="label-control">PLZ</label>
-            <input class="form-item" type="text" id="postal-code" name="postal-code" minlength="5" maxlength="5"
+            <label class="form-item" for="plz" class="label-control">PLZ</label>
+            <input class="form-item" type="text" id="plz" name="plz" minlength="5" maxlength="5"
               pattern="[0-9]{5}" title="Postleitzahl sollte aus 5 Ziffern bestehen. Bsp. 10556" required>
           </div>
           <div div class="label-control">
@@ -77,7 +77,7 @@
             </label>
           </div>
           <div class="button-container">
-            <button id="add-add-button" class="button" type="submit">Add</button>
+            <a id="add-add-button" class="button" type="submit">Add</a>
           </div>
         </form>
       </div> 
@@ -85,19 +85,9 @@
 
     <section id="maps">
       <div id="map" align="center"></div>
-      <div>
-        <label for="contacts" id="contacts_list">
-          <p id="demo"> hello </p>
-        </label>
+      <div id="myItemList">
       </div>
       <div class="button-container">
-
-      <ol id="mylist">
-        <li></li>
-        <li></li>
-        <li></li>
-      </ol>
-      
         <a id="maps-add-button" class="button" href="#adds">Add</a>
         <a id="maps-update-button" class="button" href="#updates">Update</a>
       </div>
@@ -125,8 +115,8 @@
               <input class="form-item" type="text" name="street" id="street" required> </input>
             </div>
             <div class="label-control">
-              <label class="form-item" for="postal-code" class="label-control">PLZ</label>
-              <input class="form-item" type="text" id="postal-code" name="postal-code" minlength="5" maxlength="5"
+              <label class="form-item" for="plz" class="label-control">PLZ</label>
+              <input class="form-item" type="text" id="plz" name="plz" minlength="5" maxlength="5"
                 pattern="[0-9]{5}" title="Postleitzahl sollte aus 5 Ziffern bestehen. Bsp. 10556" required> </input>
             </div>
             <div div class="label-control">
@@ -143,8 +133,8 @@
               </label>
             </div>
             <div class="button-container">
-              <button id="update-update-button" class="button" type="submit">Update</button>
-              <button id="update-delete-button" class="button" type="reset">Delete</button>
+              <a id="update-update-button" class="button"  type="submit" href="#maps">Update</a>
+              <a id="update-delete-button" class="button"  type="reset"  href="#maps">Delete</a>
               <!-- auf reset weil keine andere funktion ohne jscript-->
             </div>
           </form>
