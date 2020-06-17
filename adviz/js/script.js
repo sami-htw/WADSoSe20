@@ -47,7 +47,7 @@ function showMap(list) {
 
   function parseQualityCode(code) {
     // at least confidence match quality A OR B to be displayed as marker
-    let regex = /\D\d[AB][AB]\D/;
+    let regex = /\D\d[ABC][ABC]\D/;
     return regex.test(code);
   }
 }
@@ -60,8 +60,13 @@ const login_button = document.querySelector('#login-button')
 //const loginForm = document.querySelector('#login-form');
 const login_userName = document.querySelector('#username');
 const login_password = document.querySelector('#pass');
+const login_form = document.querySelector('#login-form')
 
 login_button.addEventListener('click', function (event) {
+
+  if(!login_form.reportValidity()){
+    return;
+  }
   // admin index 0, normalo index 1, not in user index -1
   currentUser = users.map(function (user) {
     return user.userName;
@@ -69,7 +74,7 @@ login_button.addEventListener('click', function (event) {
   if (currentUser !== -1 && users[currentUser]["pass"] === login_password.value) {
     managePermission();
     loadContactsLocalStorage();
-    openMaps();
+    openContactList();
     showMap(getAdressList());
   } else {
     event.preventDefault();
@@ -86,7 +91,6 @@ function getAdressList() {
   for (i = 0; i < contacts.length; i++) {
     adress = contacts[i]['street'] + del + contacts[i]['plz'] + del + contacts[i]['city'] + del + contacts[i]['country'];
     list.push(adress);
-
 
   }
 
@@ -117,7 +121,6 @@ function getAdressListdisplay() {
     for (i = 0; i < contacts.length; i++) {
       adress = 'Vorname :' + contacts[i]['firstName'] + del + 'Nachname :' + contacts[i]['lastName'] + del + 'Straße :' + contacts[i]['street'] + del + 'Postleitzahl:' + contacts[i]['plz'] + del + 'Stadt :' + contacts[i]['city'] + del + 'Land :' + contacts[i]['country'];
       list.push(adress);
-  
     }
   }
 
@@ -127,8 +130,7 @@ function getAdressListdisplay() {
 
 
 
-
-function openMaps() {
+function openContactList() {
   let element ;
   let contactList = document.querySelector('#fieldMembers > ul');
   if (contactList != null) {
@@ -137,17 +139,14 @@ function openMaps() {
     
   location.href = '#maps';
   ul = document.createElement('ul');
+  ul.id = "contact-list";
 
   document.querySelector('#fieldMembers').appendChild(ul);
 
   getAdressListdisplay().forEach(function (item) {
     let li = document.createElement('li');
     ul.appendChild(li);
-    li.addEventListener('click', updateContact); //TODO idea
-
-
-
-
+    li.addEventListener('click', openUpdateForm); //TODO idea
     li.innerHTML += item;
   });
 }
@@ -196,8 +195,12 @@ let contacts = [{
 
 
 const insert_button = document.querySelector('#btn-insert');
+const update_button = document.querySelector('#update-update-button');
+const delete_button = document.querySelector('#update-delete-button');
 
 insert_button.addEventListener('click', addContact);
+update_button.addEventListener('click', updateContact);
+delete_button.addEventListener('click', deleteContact);
 
 
 function addContact(){
@@ -209,7 +212,11 @@ function addContact(){
   let stadt = document.querySelector("#add-city").value;
   let land = document.querySelector("#add-country").value;
   let priv = document.querySelector("#add-priv").checked;
-
+  
+  if(!addForm.reportValidity()){
+    return;
+  }
+  
   let newContact = {
 
     firstName: firstName,
@@ -225,16 +232,66 @@ function addContact(){
   contacts.push(newContact);
   addForm.reset();
   saveContactsLocalStorage();
-  openMaps();
+  openContactList();
   showMap(getAdressList());
 }
 
-function updateContact(){
-  console.log("Hello World");
+function openUpdateForm(event){
+  let ul = document.querySelector('#contact-list');
+  let ulArray = Array.from(ul.children);
+  let indexOfContact = ulArray.indexOf(event.target);
+  localStorage.setItem('selectedContact', indexOfContact);
+  location.href = '#updates';
+
+  document.querySelector("#update-first_name").value = contacts[indexOfContact]['firstName'];
+  document.querySelector("#update-last_name").value = contacts[indexOfContact]['lastName'];
+  document.querySelector("#update-street").value = contacts[indexOfContact]['street'];
+  document.querySelector("#update-plz").value = contacts[indexOfContact]['plz'];
+  document.querySelector("#update-city").value = contacts[indexOfContact]['city'];
+  document.querySelector("#update-country").value = contacts[indexOfContact]['country'];
+  document.querySelector("#update-priv").checked = contacts[indexOfContact]['priv'];
 }
 
+function updateContact(){
+  
+  let selectedContact = localStorage.getItem('selectedContact');
+  let updateForm = document.querySelector('#update-form');
+  let firstName = document.querySelector("#update-first_name").value;
+  let lastName = document.querySelector("#update-last_name").value;
+  let strasse = document.querySelector("#update-street").value;
+  let plz = document.querySelector("#update-plz").value;
+  let stadt = document.querySelector("#update-city").value;
+  let land = document.querySelector("#update-country").value;
+  let priv = document.querySelector("#update-priv").checked;
+  if(!updateForm.reportValidity()){
+    return;
+  }
+  contacts[selectedContact]['firstName'] = firstName;
+  contacts[selectedContact]['lastName']= lastName;
+  contacts[selectedContact]['street']= strasse;
+  contacts[selectedContact]['plz']= plz;
+  contacts[selectedContact]['city']= stadt;
+  contacts[selectedContact]['country']= land;
+  contacts[selectedContact]['priv']= priv;
+ 
 
+  updateForm.reset();
+  saveContactsLocalStorage();
+  openContactList();
+  showMap(getAdressList());
+  localStorage.setItem('selectedContact', null);
+}
 
+function deleteContact(){
+  let updateForm = document.querySelector('#update-form');
+  let selectedContact = localStorage.getItem('selectedContact');
+  contacts.splice(selectedContact, 1);
+  updateForm.reset();
+  saveContactsLocalStorage();
+  openContactList();
+  showMap(getAdressList());
+  localStorage.setItem('selectedContact', null);
+}
 
 function saveContactsLocalStorage(){
   localStorage.setItem('contacts', JSON.stringify(contacts));
