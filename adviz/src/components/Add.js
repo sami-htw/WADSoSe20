@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux'
 
 class Add extends Component {
     constructor(props){
@@ -36,7 +37,9 @@ class Add extends Component {
         });
       }
     
-    
+      handleHome = (e) => {
+        this.props.history.push('/home');
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -50,7 +53,17 @@ class Add extends Component {
             priv:this.state.priv
         })
         .then( response => {
-            console.log(response.data[1]);
+            const contact = {
+                _id: response.data.id,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                street:this.state.street,
+                plz:this.state.plz,
+                city:this.state.city,
+                country:this.state.country,
+                priv:this.state.priv
+            }
+            this.props.addCurrentUser(contact);
             setTimeout(() => {
                 this.props.history.push('/home');
             }, 2000);
@@ -108,4 +121,12 @@ class Add extends Component {
         );
     }
 }
-export default Add;
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCurrentUser: (contact) => dispatch({type: 'ADD_CURRENTUSER', contact: contact})
+    }
+}
+
+export default connect(null,mapDispatchToProps)(Add);

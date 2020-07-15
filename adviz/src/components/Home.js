@@ -3,6 +3,7 @@ import axios from 'axios';
 import Contact from './Contact';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 
@@ -12,60 +13,43 @@ import {Link} from 'react-router-dom'
 
 class Home extends Component {
 
-
-    state = {
-
-        contacts: [],
-        firstName: null,
-        lastName: null,
-    }
-
-
-
  handleLogOut= (e)=>{
-
-    setTimeout(() => {
         this.props.history.push('/adviz');
-    }, 2000);
  };
 
 
  handleAddContacts= (e) =>{
-     setTimeout(() =>{
-         this.props.history.push('/Add');
-     },2000);
+         this.props.history.push('/add');
  }
 
-    componentDidMount() {
-        let name = this.props.match.params.firstName
-        axios.get('http://localhost:3003/contacts').then(res => {
+    getGreeting(currentUser){
+        
+        let permission = '';
+        if(currentUser.isAdmin == true){
+            permission = 'admin'
+        }else{
+            permission = 'nicht-admin'
+        }
 
-            console.log(res);
-
-            this.setState({
-                contacts: res.data,
-            });
-
-        })
-
-
+        return 'Hallo ' + currentUser.firstName + ' ' + currentUser.lastName + ', eingeloggt als ' + permission
     }
 
-
-
-
     render() {
-        const { contacts } = this.state;
-
-        const postList = contacts.length ? (
+        const { contacts } = this.props;
+        const { currentUser } = this.props;
+        let greetingString = this.getGreeting(currentUser);
+        const contactList = contacts.length ? (
             contacts.map((contact) => {
-
                 return (
                     <div className='post card' key={contact._id} >
                         <div className="card-content">
-                            <Link to={'/contacts/' + contact._id}>
-                            <span className="card-title">{contact._id}</span>
-                            </Link>
+                        {
+                    currentUser.isAdmin
+                    ? <Link to={'/contacts/' + contact._id}>
+                    <span className="card-title">{contact._id}</span>
+                    </Link>
+                    : <span className="card-title">{contact._id}</span>
+                }
                             <p>{contact.firstName}</p>
                             <p>{contact.lastName}</p>
                             <p>{contact.street}</p>
@@ -82,33 +66,36 @@ class Home extends Component {
 
                 <div className="center">No posts to show</div>
             );
-
+            //console.log(greeting);
 
 
         return (
             <div>
-
-
                 <div>
                     <div className="contaner">
-                        <h4 className="center">Home</h4>
-                        <ul>{postList}</ul>
+                    <div><h1>{greetingString}</h1></div>
+                        <ul>{contactList}</ul>
                     </div>
                 </div>
-
-                <button type='submit' className='button' id='btn-insert' onClick={this.handleAddContacts}>Add</button>
+                {
+                    currentUser.isAdmin
+                    ? <button type='submit' className='button' id='btn-insert' onClick={this.handleAddContacts}>Add</button>
+                    : null
+                }
+                
                 <button type='submit' className='button' id='btn-insert' onClick={this.handleLogOut}>logout</button>
             </div>
 
         );
-
-
-
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return{
+        contacts: state.contacts,
+        currentUser: state.currentUser
+    }
+}
 
-
-
+export default connect(mapStateToProps)(Home);
 

@@ -26,14 +26,6 @@ function App() {
           <Route path='/contacts/:contactId' component={Contact} />
           <Route path='/add' component={Add} />
 
-
-
-        
-
-
-
-
-
         </div>
       </Switch>
     </BrowserRouter>

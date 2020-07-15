@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux'
 
 class Login extends Component {
 
@@ -7,6 +8,7 @@ class Login extends Component {
     state = {
         username: null,
         password: null,
+        contacts: [],
     }
 
     handleSubmit = (e) => {
@@ -16,12 +18,27 @@ class Login extends Component {
             password: this.state.password
         })
         .then( response => {
-            console.log(response.data[0]);
+            //console.log(response.data[0]);
+            // init REDUX data, Contacts etc
+            axios.get('http://localhost:3003/contacts').then(res => {
+                //console.log(res);
+                this.props.initContactList(res.data);
+                this.props.permissionContacts(response.data[0].isAdmin);
+                this.props.initCurrentUser(response.data[0])
+                this.setState({
+                    contacts: res.data,
+                });
+            })
+            .catch( error => {
+                console.log(error);
+            })
+
             setTimeout(() => {
                 this.props.history.push('/home');
             }, 2000);
         })
         .catch( error => {
+            alert('Username or password wrong');
             console.log(error);
         })
     }
@@ -35,9 +52,6 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <header>
-                    <h2 align="center">user's Page</h2>
-                </header>
                     <div className="card">
                         <p className="card_title">Login</p>
                         <form onSubmit = {this.handleSubmit} id="login-form">
@@ -62,7 +76,14 @@ class Login extends Component {
                     
         );
     }              
-
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        initContactList: (contacts, permission) => dispatch({type: 'INIT_CONTACTLIST', contacts: contacts, isAdmin: permission}),
+        permissionContacts: (permission) => dispatch({type: 'PERMISSION',isAdmin: permission }),
+        initCurrentUser: (user) => dispatch({type: 'INIT_CURRENTUSER', currentUser: user})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login);
