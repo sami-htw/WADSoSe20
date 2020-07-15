@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Contact from './Contact';
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom'
 
 
 
@@ -15,7 +16,8 @@ class Home extends Component {
     state = {
 
         contacts: [],
-
+        firstName: null,
+        lastName: null,
     }
 
 
@@ -35,7 +37,7 @@ class Home extends Component {
  }
 
     componentDidMount() {
-
+        let name = this.props.match.params.firstName
         axios.get('http://localhost:3003/contacts').then(res => {
 
             console.log(res);
@@ -60,10 +62,10 @@ class Home extends Component {
 
                 return (
                     <div className='post card' key={contact._id} >
-
                         <div className="card-content">
-
+                            <Link to={'/contacts/' + contact._id}>
                             <span className="card-title">{contact._id}</span>
+                            </Link>
                             <p>{contact.firstName}</p>
                             <p>{contact.lastName}</p>
                             <p>{contact.street}</p>
@@ -71,9 +73,6 @@ class Home extends Component {
                             <p>{contact.plz}</p>
                             <p>{contact.country}</p>
                             <p>{contact.priv.toString()}</p>
-
-
-
                         </div>
                     </div>
                 )

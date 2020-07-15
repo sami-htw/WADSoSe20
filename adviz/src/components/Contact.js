@@ -9,23 +9,58 @@ import axios from 'axios';
 
 class Contact extends Component {
 
-    state = {
-        username: null,
-        password: null,
-    };
+    constructor(props){
+        super(props);
+        this.state = {
+            _id: 5,
+            firstName: null,
+            lastName: null,
+            street: null,
+            plz: null,
+            city: null,
+            country: null,
+            priv: true, 
+        };
+    
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+ 
 
-   
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value,
+        })
+    }
+
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.name === 'priv' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
+    
+    
 
     handleSubmit = (e) => {
         e.preventDefault();
-        axios.get('http://localhost:3003/contact', {
-            username: this.state.username,
-            password: this.state.password
+        axios.put('http://localhost:3003/contacts', {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            street:this.state.street,
+            plz:this.state.plz,
+            city:this.state.city,
+            country:this.state.country,
+            priv:this.state.priv
         })
         .then( response => {
-            console.log(response.data[0]);
+            console.log(response.data[1]);
             setTimeout(() => {
-                this.props.history.push('/contact');
+                this.props.history.push('/home');
             }, 2000);
         })
         .catch( error => {
@@ -33,22 +68,61 @@ class Contact extends Component {
         })
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
+componentDidMount(){
+    let id = this.props.match.params.contactId;
+    this.setState({
+        _id: id,
+        firstName: "Samet"
+      });
+}
 
-    render() {   
-        return(
+    render() {
+        return (
+            <div>
+                <h1>Update/Delete</h1>
+                    <div className="card">
+                        <h2 className="card_title" align="center">Add new contact</h2>
+                        <h2>{this.state._id}</h2>                        
+                            <hr
+                            style={{ border: '0', height: '5px', backgroundImage: "linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75}), rgba(10,0,0,0)) " }} />
+                        <form action="#maps" className="label-control" id="add-form" onSubmit={this.handleSubmit}>
 
-            <div id="fieldMembers">
-            <legend> Contacts</legend>
+                            <div className="label-control">
+                                <label className="form-item" htmlFor="firstName" className="label-control">firstname</label>
+                                <input className="form-item" type="text" name="firstName" id="firstName" align="center" onChange={this.handleChange} required />
+                            </div>
+                            <div className="label-control">
+                                <label className="form-item" htmlFor="lastName" className="label-control">lastname</label>
+                                <input className="form-item" type="text" name="lastName" id="lastName" onChange={this.handleChange} required />
+                            </div>
+                            <div className="label-control">
+                                <label className="form-item" htmlFor="street" className="label-control">street</label>
+                                <input defaultValue={this.firstName} className="form-item" type="text" name="street" id="street" onChange={this.handleChange} required />
+                            </div>
+                            <div className="label-control">
+                                <label className="form-item" htmlFor="plz" className="label-control">PLZ</label>
+                                <input className="form-item" type="text" id="plz" name="plz" minLength="5" maxLength="5" pattern="[0-9]{5}"
+                                    title="Postleitzahl sollte aus 5 Ziffern bestehen. Bsp. 10556" onChange={this.handleChange} required />
+                            </div>
+                            <div className="label-control">
+                                <label className="form-item" htmlFor="city" className="label-control">city</label>
+                                <input className="form-item" type="text" name="city" id="city" onChange={this.handleChange} required />
+                            </div>
+                            <div className="label-control">
+                                <label className="form-item" htmlFor="country" className="label-control">country</label>
+                                <input className="form-item" type="text" name="country" id="country" onChange={this.handleChange} required />
+                            </div>
+                            <div className="checkbox">
+                                <label htmlFor="priv" className="label-control">privat </label>
+                                <input name= "priv" id="priv" type="checkbox" checked={this.state.priv} onChange={this.handleInputChange} />
+                            </div>
+                            <div className="button-container">
+                                <button id="btn-insert" className="button" onSubmit={this.handleSubmit }>Add</button>
+                            </div>
+                        </form>
+                    </div>
             </div>
-
-            
-           
-        );          
-    }              
+        );
+    }
 }
 export default Contact;
